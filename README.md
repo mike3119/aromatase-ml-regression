@@ -114,6 +114,28 @@ Aromatase is an enzyme critical in estrogen biosynthesis.
 Understanding inhibitors through data-driven modeling can aid in developing better therapeutic candidates for hormone-dependent cancers.
 This project explores how machine learning can be applied to analyze and predict inhibitory activities.
 
+## External Test Results (Aromatase pIC50 — PaDEL PubChem 881-bit)
+
+**Model:** Random Forest  
+**External test size:** ~614 compounds
+
+### Predicted vs Observed (External Test)
+![Predicted vs Observed](plots/pred_vs_obs.png)
+
+### Calibration / Reliability (10 bins)
+![Calibration / Reliability](plots/calibration.png)
+
+### Headline Metrics (External Test)
+| Model         | Test R² | Test MSE |
+|---------------|:------:|:--------:|
+| Random Forest | **0.505** | **0.901** |
+
+**Pipeline:** RDKit standardization → PaDEL fingerprints (PubChem 881-bit) → stratified split with strict external test → kNN-distance applicability domain → calibration (reliability) → error-by-scaffold inspection.
+
+> Reproducibility: fixed seeds, saved metrics JSON, versioned splits.  
+> Repo link: `github.com/mike3119/aromatase-ml-regression`
+
+
 👨🏽‍🔬 Author
 
 Akosu Michael Hemen
